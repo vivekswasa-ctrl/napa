@@ -107,12 +107,21 @@ a:hover {
   box-sizing: border-box;
 }
 
+main {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Header — liquid glass */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
   isolation: isolate;
+  width: 100%;
+  max-width: 100%;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.78) 0%,
@@ -157,6 +166,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  min-width: 0;
   color: var(--navy);
   font-weight: 700;
   font-size: 1rem;
@@ -1421,6 +1431,7 @@ section {
 .programmes-tabs {
   position: relative;
   margin: 0 0 1.5rem;
+  max-width: 100%;
 }
 
 .programmes-tab-input {
@@ -3249,6 +3260,36 @@ body:has(.programmes-gallery:target) {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-inline: max(1rem, env(safe-area-inset-left, 0px)) max(1rem, env(safe-area-inset-right, 0px));
+  }
+
+  .hero-copy {
+    transform: translateY(-0.35rem);
+  }
+
+  .hero {
+    padding-top: clamp(2.35rem, 7vw, 4.25rem);
+    padding-bottom: clamp(3.25rem, 10vw, 5.25rem);
+  }
+
+  .visual-band {
+    min-height: min(48vh, 340px);
+    padding: 2rem 0;
+    background-position: center center;
+  }
+
+  .contact-social-icons {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .programmes-tablist {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
