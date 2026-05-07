@@ -291,6 +291,8 @@ a:hover {
 @media (max-width: 1200px) {
   main {
     padding-inline-end: calc(3.75rem + env(safe-area-inset-right, 0px));
+    max-width: 100%;
+    overflow-x: hidden;
   }
 }
 
@@ -300,7 +302,8 @@ a:hover {
   padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(4rem, 10vw, 6rem);
   background: linear-gradient(135deg, #0f2744 0%, #1e3a5f 45%, #134e4a 100%);
   color: #fff;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .hero::before {
@@ -519,6 +522,10 @@ a:hover {
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(1.75rem, 4vw, 3rem);
   align-items: center;
+}
+
+.hero-grid > * {
+  min-width: 0;
 }
 
 @media (max-width: 900px) {
@@ -3240,6 +3247,11 @@ body:has(.programmes-gallery:target) {
 }
 
 @media (max-width: 480px) {
+  /* Contact rail moves to bottom bar — remove side inset reserved for the rail */
+  main {
+    padding-inline-end: env(safe-area-inset-right, 0px);
+  }
+
   section {
     padding: clamp(2.75rem, 9vw, 4rem) 0;
   }
