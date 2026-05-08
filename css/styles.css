@@ -45,19 +45,18 @@
     radial-gradient(ellipse 70% 55% at 12% 22%, rgba(15, 39, 68, 0.12), transparent 58%),
     radial-gradient(ellipse 88% 70% at 82% 15%, rgba(13, 148, 136, 0.08), transparent 56%),
     radial-gradient(ellipse 72% 52% at 8% 85%, rgba(249, 115, 22, 0.055), transparent 52%);
-  /* Job board — light section + career panel blend */
   --jobs-amber: #e8a060;
+  /* Job openings — section stripe matches landing (light); blue panel is .jobs-board */
   --jobs-board-surface: linear-gradient(
-    150deg,
-    #071422 0%,
-    #0c2738 36%,
-    #0a3a36 70%,
-    #0f2744 100%
+    165deg,
+    #f5f8fc 0%,
+    #eef4fb 42%,
+    #faf8f6 100%
   );
   --jobs-board-glow:
-    radial-gradient(ellipse 80% 55% at 15% 8%, rgba(232, 160, 96, 0.18), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 85% 45%, rgba(13, 148, 136, 0.14), transparent 52%),
-    radial-gradient(ellipse 60% 45% at 40% 90%, rgba(37, 99, 235, 0.08), transparent 50%);
+    radial-gradient(ellipse 85% 70% at 10% 14%, rgba(147, 197, 253, 0.28), transparent 58%),
+    radial-gradient(ellipse 78% 62% at 90% 86%, rgba(253, 186, 116, 0.2), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 72% 22%, rgba(204, 251, 241, 0.22), transparent 50%);
 }
 
 *,
@@ -948,7 +947,7 @@ section {
   isolation: isolate;
   padding: clamp(2.75rem, 7vw, 5rem) 0;
   background: var(--jobs-board-surface);
-  border-block: 1px solid rgba(255, 255, 255, 0.08);
+  border-block: 1px solid rgba(15, 39, 68, 0.07);
 }
 
 .section-jobs::before {
@@ -980,7 +979,7 @@ section {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.14),
     inset 0 -1px 0 rgba(0, 0, 0, 0.12),
-    0 28px 64px rgba(0, 0, 0, 0.22);
+    0 32px 72px rgba(15, 39, 68, 0.28);
 }
 
 .jobs-board__header {
