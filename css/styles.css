@@ -317,13 +317,13 @@ main {
   z-index: 1;
   overflow: visible;
   --hero-subtitle-amber: #c2410c;
-  /* Writing animation: “Pulmonology & Beyond” (19 chars) → pause → “We call it the NAPA way!” (24 chars) */
-  --write-char-dur: 0.42s;
-  --write-stagger: 0.048s;
+  /* Writing animation: “Pulmonology & Beyond” (20 glyphs) → pause → “We call it the NAPA way!” (24 glyphs) */
+  --write-char-dur: 0.4s;
+  --write-stagger: 0.052s;
   --write-1-start: 0.12s;
-  --write-gap: 0.14s;
+  --write-gap: 0.16s;
   --write-2-start: calc(
-    var(--write-1-start) + 18 * var(--write-stagger) + var(--write-char-dur) + var(--write-gap)
+    var(--write-1-start) + 19 * var(--write-stagger) + var(--write-char-dur) + var(--write-gap)
   );
   transform: translateY(-1cm);
 }
@@ -382,6 +382,7 @@ main {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
+    clip-path: none !important;
   }
 }
 
@@ -660,6 +661,7 @@ main {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
+    clip-path: none !important;
   }
 }
 
@@ -693,31 +695,27 @@ main {
   white-space: nowrap;
 }
 
-/* Hand-writing style reveal — sequential glyphs (GPU-friendly transforms only) */
+/* Hand-writing reveal — left-to-right stroke per glyph (P … d in order) */
 .hero-write-char {
   display: inline-block;
-  opacity: 0;
-  will-change: opacity, transform, filter;
-  animation: hero-write-reveal var(--write-char-dur) cubic-bezier(0.25, 0.82, 0.24, 1) both;
+  opacity: 1;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  animation: hero-write-reveal var(--write-char-dur) cubic-bezier(0.33, 0.72, 0.22, 1) both;
 }
 
 @keyframes hero-write-reveal {
   0% {
-    opacity: 0;
-    transform: translate3d(0.08em, 0.06em, 0) rotate(-3deg) scale(0.94);
-    filter: blur(3px);
-  }
-  55% {
-    filter: blur(0.6px);
+    clip-path: inset(0 100% 0 0);
+    transform: translate3d(0.04em, 0.08em, 0) rotate(-3.5deg);
   }
   100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
-    filter: blur(0);
+    clip-path: inset(0 0 0 0);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
 }
 
-/* Line 1 — Pulmonology & Beyond (19 characters) */
+/* Line 1 — Pulmonology & Beyond (20 glyphs: P through d) */
 .hero-tagline__track .hero-write-char:nth-child(1) {
   animation-delay: calc(var(--write-1-start) + 0 * var(--write-stagger));
 }
@@ -774,6 +772,9 @@ main {
 }
 .hero-tagline__track .hero-write-char:nth-child(19) {
   animation-delay: calc(var(--write-1-start) + 18 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(20) {
+  animation-delay: calc(var(--write-1-start) + 19 * var(--write-stagger));
 }
 
 /* Line 2 — We call it the NAPA way! (24 characters), begins after line 1 completes */
@@ -1984,15 +1985,6 @@ body:has(.programmes-gallery:target) {
   font-size: 1rem;
   line-height: 1.65;
   color: var(--text-muted);
-}
-
-.team-tier-label {
-  margin: 0 0 1.1rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--involved-orange);
 }
 
 .team-panel-wrap {
