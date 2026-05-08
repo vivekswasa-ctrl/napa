@@ -4,6 +4,17 @@
 })();
 
 (function () {
+  var skip = document.querySelector(".skip-link");
+  var mainEl = document.getElementById("top");
+  if (!skip || !mainEl) return;
+  skip.addEventListener("click", function () {
+    window.requestAnimationFrame(function () {
+      mainEl.focus({ preventScroll: true });
+    });
+  });
+})();
+
+(function () {
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".nav");
   if (!toggle || !nav) return;
