@@ -457,6 +457,122 @@ main {
   content: none;
 }
 
+/* Light-blue airflow — decorative inhale / exhale (synced to lung-photo-breathe, 7.5s) */
+.lung-airflow {
+  position: absolute;
+  left: 50%;
+  top: -2%;
+  z-index: 0;
+  width: 112%;
+  height: 108%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  overflow: visible;
+  background:
+    radial-gradient(ellipse 42% 36% at 50% 52%, rgba(125, 211, 252, 0.42) 0%, transparent 68%),
+    radial-gradient(ellipse 30% 28% at 28% 58%, rgba(186, 230, 253, 0.38) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 28% at 72% 58%, rgba(186, 230, 253, 0.38) 0%, transparent 65%),
+    radial-gradient(ellipse 34% 26% at 50% 10%, rgba(224, 242, 254, 0.55) 0%, transparent 70%);
+  filter: blur(10px);
+  opacity: 0.72;
+  animation: lung-airflow-glow 7.5s ease-in-out infinite;
+}
+
+.lung-airflow::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -3%;
+  width: 24%;
+  height: 42%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    rgba(224, 242, 254, 0.95) 0%,
+    rgba(125, 211, 252, 0.55) 42%,
+    rgba(186, 230, 253, 0.12) 82%,
+    transparent 100%
+  );
+  filter: blur(5px);
+  opacity: 0.88;
+  animation: lung-airflow-stream 7.5s ease-in-out infinite;
+}
+
+.lung-airflow::after {
+  content: "";
+  position: absolute;
+  inset: 6% 8% 10%;
+  border-radius: 48% 48% 52% 52%;
+  background: radial-gradient(
+    ellipse 90% 85% at 50% 45%,
+    rgba(186, 230, 253, 0.22) 0%,
+    transparent 72%
+  );
+  filter: blur(16px);
+  opacity: 0.65;
+  animation: lung-airflow-lungs 7.5s ease-in-out infinite;
+}
+
+@keyframes lung-airflow-glow {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: translateX(-50%) scale(1.08);
+    filter: blur(14px);
+  }
+  50% {
+    opacity: 0.88;
+    transform: translateX(-50%) scale(0.94);
+    filter: blur(8px);
+  }
+}
+
+@keyframes lung-airflow-stream {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(-5%) scale(1, 0.88);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateX(-50%) translateY(10%) scale(1, 1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes lung-airflow-lungs {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1.06);
+  }
+  50% {
+    opacity: 0.78;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lung-airflow,
+  .lung-airflow::before,
+  .lung-airflow::after {
+    animation: none !important;
+    opacity: 0.28;
+    transform: translateX(-50%);
+    filter: blur(12px);
+  }
+
+  .lung-airflow::before {
+    transform: translateX(-50%);
+    opacity: 0.45;
+  }
+
+  .lung-airflow::after {
+    transform: none;
+    opacity: 0.22;
+  }
+}
+
 .lung-photo-pivot {
   position: relative;
   z-index: 1;
