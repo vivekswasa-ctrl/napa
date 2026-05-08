@@ -708,7 +708,7 @@ main {
 @keyframes hero-write-reveal {
   0% {
     clip-path: inset(0 100% 0 0);
-    transform: translate3d(0.04em, 0.08em, 0) rotate(-3.5deg);
+    transform: translate3d(0, 0.06em, 0) rotate(-3deg);
   }
   100% {
     clip-path: inset(0 0 0 0);
@@ -3444,17 +3444,27 @@ main#top:focus-visible {
 }
 
 @media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: visible;
+  }
+
+  main {
+    overflow-x: visible;
+  }
+
   .container {
     padding-inline: max(1rem, env(safe-area-inset-left, 0px)) max(1rem, env(safe-area-inset-right, 0px));
   }
 
-  .hero-copy {
-    transform: translateY(-0.35rem);
-  }
-
   .hero {
+    overflow-x: visible;
     padding-top: clamp(2.35rem, 7vw, 4.25rem);
     padding-bottom: clamp(3.25rem, 10vw, 5.25rem);
+  }
+
+  .hero-copy {
+    transform: translateY(-0.35rem);
   }
 
   .visual-band {
@@ -3474,6 +3484,27 @@ main#top:focus-visible {
 }
 
 @media (max-width: 480px) {
+  .hero .container {
+    padding-inline: max(1.35rem, env(safe-area-inset-left, 0px)) max(1.35rem, env(safe-area-inset-right, 0px));
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.95rem, 3.5vw, 1.38rem);
+    letter-spacing: 0.012em;
+    -webkit-text-stroke: 0.014em rgba(120, 48, 22, 0.28);
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.96),
+      0 0 3px rgba(255, 255, 255, 0.5),
+      0.4px 0.4px 0 rgba(154, 62, 22, 0.32),
+      -0.25px -0.25px 0 rgba(154, 62, 22, 0.14),
+      0 1px 8px rgba(194, 65, 12, 0.12);
+  }
+
+  .hero-tagline__track {
+    transform: scale(0.88);
+    transform-origin: center top;
+  }
+
   section {
     padding: clamp(2.75rem, 9vw, 4rem) 0;
   }
@@ -3500,5 +3531,21 @@ main#top:focus-visible {
   .social-contact-btn svg {
     width: 22px;
     height: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero .container {
+    padding-inline: max(1.15rem, env(safe-area-inset-left, 0px)) max(1.15rem, env(safe-area-inset-right, 0px));
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.88rem, 3.35vw, 1.28rem);
+    letter-spacing: 0.01em;
+  }
+
+  .hero-tagline__track {
+    transform: scale(0.82);
+    transform-origin: center top;
   }
 }
