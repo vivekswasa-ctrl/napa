@@ -209,6 +209,7 @@ main {
   flex-shrink: 0;
   min-width: 44px;
   min-height: 44px;
+  touch-action: manipulation;
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -780,6 +781,22 @@ main {
   }
 }
 
+@media (max-width: 420px) {
+  .hero-copy .hero-tagline {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: 0.35rem;
+    justify-content: flex-start;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.05rem, 4.2vw, 1.55rem);
+  }
+}
+
 .hero h1 {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.45vw, 2.65rem);
@@ -834,6 +851,7 @@ main {
   font-size: 0.95rem;
   border: 2px solid transparent;
   cursor: pointer;
+  touch-action: manipulation;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   text-decoration: none;
 }
@@ -875,6 +893,10 @@ section {
   text-transform: uppercase;
   color: var(--teal);
   margin-bottom: 0.65rem;
+}
+
+.section-label--join-teal {
+  color: var(--teal-soft);
 }
 
 .section-title {
@@ -1463,6 +1485,7 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.06);
   cursor: pointer;
+  touch-action: manipulation;
   transition:
     background 0.2s ease,
     color 0.2s ease,
@@ -2222,6 +2245,7 @@ body:has(.programmes-gallery:target) {
   font-weight: 700;
   color: #fff;
   cursor: pointer;
+  touch-action: manipulation;
   background: linear-gradient(180deg, #fb923c 0%, var(--involved-orange) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.38),
@@ -2435,6 +2459,10 @@ body:has(.programmes-gallery:target) {
   padding: 2.5rem 0;
   background-size: cover;
   background-position: center;
+}
+
+.visual-band--quote {
+  background-image: url("https://images.unsplash.com/photo-1758691463203-cce9d415b2b5?auto=format&fit=crop&w=2400&q=85");
 }
 
 .visual-band::before {
@@ -2969,6 +2997,7 @@ body:has(.programmes-gallery:target) {
     0 2px 12px rgba(15, 39, 68, 0.14);
   text-decoration: none;
   color: #fff;
+  touch-action: manipulation;
   transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
   backdrop-filter: blur(10px) saturate(140%);
   -webkit-backdrop-filter: blur(10px) saturate(140%);
@@ -3015,6 +3044,12 @@ body:has(.programmes-gallery:target) {
 }
 
 /* Footer */
+.site-footer__org-name {
+  display: block;
+  color: #fff;
+  font-weight: 700;
+}
+
 .site-footer {
   position: relative;
   isolation: isolate;
@@ -3058,6 +3093,7 @@ body:has(.programmes-gallery:target) {
   font-size: 0.95rem;
   text-decoration: none;
   color: #fff;
+  touch-action: manipulation;
   background: rgba(255, 255, 255, 0.11);
   border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);

@@ -1,17 +1,27 @@
 (function () {
+  var y = document.getElementById("y");
+  if (y) y.textContent = String(new Date().getFullYear());
+})();
+
+(function () {
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".nav");
   if (!toggle || !nav) return;
 
+  function setMenuOpen(open) {
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+
   toggle.addEventListener("click", function () {
     var open = nav.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    setMenuOpen(open);
   });
 
   nav.querySelectorAll("a").forEach(function (link) {
     link.addEventListener("click", function () {
       nav.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
+      setMenuOpen(false);
     });
   });
 })();
@@ -87,9 +97,19 @@
 (function () {
   window.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
+
+    var toggle = document.querySelector(".nav-toggle");
+    var nav = document.querySelector(".nav");
+    if (nav && toggle && nav.classList.contains("is-open")) {
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
+    }
+
     var h = window.location.hash;
-    if (!h || h.indexOf("gallery-") !== 1) return;
-    e.preventDefault();
-    window.location.hash = "#programmes";
+    if (h && h.indexOf("gallery-") === 1) {
+      e.preventDefault();
+      window.location.hash = "#programmes";
+    }
   });
 })();
