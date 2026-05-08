@@ -667,20 +667,16 @@ main {
   max-width: 100%;
   font-family: "Great Vibes", cursive;
   font-size: clamp(1.48rem, 3.15vw, 2.15rem);
-  font-weight: 700;
-  line-height: 1.22;
-  letter-spacing: 0.025em;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
   text-align: center;
   color: var(--hero-subtitle-amber);
-  text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.96),
-    0 0 4px rgba(255, 255, 255, 0.55),
-    0.55px 0.55px 0 rgba(154, 62, 22, 0.38),
-    -0.35px -0.35px 0 rgba(154, 62, 22, 0.18),
-    0 2px 10px rgba(194, 65, 12, 0.16);
-  -webkit-text-stroke: 0.02em rgba(120, 48, 22, 0.34);
+  text-shadow: none;
+  -webkit-text-stroke: 0;
   white-space: nowrap;
   overflow: visible;
+  padding-bottom: 0.28em;
 }
 
 .hero-copy .hero-tagline {
@@ -693,7 +689,9 @@ main {
 .hero-tagline__track {
   display: inline-flex;
   flex-wrap: nowrap;
+  align-items: baseline;
   white-space: nowrap;
+  overflow: visible;
 }
 
 /* Hand-writing reveal — left-to-right stroke per glyph (P … d in order) */
@@ -702,16 +700,18 @@ main {
   opacity: 1;
   transform-origin: left center;
   backface-visibility: hidden;
+  overflow: visible;
   animation: hero-write-reveal var(--write-char-dur) cubic-bezier(0.33, 0.72, 0.22, 1) both;
 }
 
 @keyframes hero-write-reveal {
   0% {
-    clip-path: inset(0 100% 0 0);
+    /* Extra vertical slack so script descenders (g, y) aren’t clipped during reveal */
+    clip-path: inset(-0.35em 100% -0.35em 0);
     transform: translate3d(0, 0.06em, 0) rotate(-3deg);
   }
   100% {
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(-0.35em 0 -0.35em 0);
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
 }
@@ -3491,13 +3491,7 @@ main#top:focus-visible {
   .hero-tagline {
     font-size: clamp(0.95rem, 3.5vw, 1.38rem);
     letter-spacing: 0.012em;
-    -webkit-text-stroke: 0.014em rgba(120, 48, 22, 0.28);
-    text-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.96),
-      0 0 3px rgba(255, 255, 255, 0.5),
-      0.4px 0.4px 0 rgba(154, 62, 22, 0.32),
-      -0.25px -0.25px 0 rgba(154, 62, 22, 0.14),
-      0 1px 8px rgba(194, 65, 12, 0.12);
+    padding-bottom: 0.32em;
   }
 
   .hero-tagline__track {
