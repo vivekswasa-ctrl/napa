@@ -13,6 +13,8 @@
   --surface: #ffffff;
   /* Hero + social strip — single premium field colour */
   --landing-pearl: #faf9f7;
+  /* Subtle plus-grid texture (navy @ ~4.5% — reads softly on pearl) */
+  --landing-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230f2744' fill-opacity='0.045'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   --cream: #f8fafc;
   --radius: 12px;
   --radius-lg: 20px;
@@ -299,7 +301,7 @@ main {
   }
 }
 
-/* Hero — solid pearl field (no tinted blobs or pattern overlays) */
+/* Hero — pearl field with subtle woven grid (no tinted colour blobs) */
 .hero {
   position: relative;
   padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(4rem, 10vw, 6rem);
@@ -307,6 +309,31 @@ main {
   color: var(--text);
   overflow-x: hidden;
   overflow-y: visible;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: var(--landing-pattern);
+  background-repeat: repeat;
+  opacity: 0.85;
+  mask-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 1) 22%,
+    rgba(0, 0, 0, 1) 78%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 1) 22%,
+    rgba(0, 0, 0, 1) 78%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
 }
 
 .hero .container {
@@ -2135,7 +2162,20 @@ body:has(.programmes-gallery:target) {
   border-bottom: 1px solid rgba(15, 39, 68, 0.06);
 }
 
+.social-strip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: var(--landing-pattern);
+  background-repeat: repeat;
+  opacity: 0.72;
+}
+
 .social-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
