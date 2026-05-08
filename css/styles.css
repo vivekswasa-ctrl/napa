@@ -2179,41 +2179,14 @@ body:has(.programmes-gallery:target) {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem 1.25rem;
-}
-
-.social-strip__text {
-  flex: 1 1 16rem;
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--text-muted);
+  justify-content: center;
+  gap: 0.75rem 1rem;
 }
 
 .social-strip .contact-social-icons {
   flex-shrink: 0;
-  margin-left: auto;
-}
-
-@media (max-width: 640px) {
-  .social-inner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .social-strip .contact-social-icons {
-    margin-left: 0;
-    justify-content: center;
-  }
-}
-
-.social-inner a.ig {
-  font-weight: 700;
-  color: var(--navy);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  margin: 0;
+  justify-content: center;
 }
 
 /* Two-column feature */
