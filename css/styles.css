@@ -341,27 +341,20 @@ main {
   z-index: 1;
 }
 
-/* Hero — modern wordmark + timed copy */
+/* Hero — instant headline/body; two scripted lines use writing animation */
 .hero-copy {
   position: relative;
   z-index: 1;
   overflow: visible;
   --hero-subtitle-amber: #c2410c;
-  /* Timeline (seconds): wordmark → tagline line → h1 → lead body → closing line */
-  --wm-dur: 0.48s;
-  --wm-end: var(--wm-dur);
-  --tag-start: calc(var(--wm-end) + 0.06s);
-  --tag-dur: 0.52s;
-  --tag-end: calc(var(--tag-start) + var(--tag-dur));
-  /* Headline follows the tagline line as soon as it finishes */
-  --h1-start: calc(var(--tag-end) + 0.02s);
-  --h1-dur: 0.55s;
-  --h1-end: calc(var(--h1-start) + var(--h1-dur));
-  --lead-start: calc(var(--h1-end) + 0.05s);
-  --lead-dur: 0.56s;
-  --lead-end: calc(var(--lead-start) + var(--lead-dur));
-  --cta-start: calc(var(--lead-end) + 0.06s);
-  --cta-dur: 0.5s;
+  /* Writing animation: “Pulmonology & Beyond” (19 chars) → pause → “We call it the NAPA way!” (24 chars) */
+  --write-char-dur: 0.42s;
+  --write-stagger: 0.048s;
+  --write-1-start: 0.12s;
+  --write-gap: 0.14s;
+  --write-2-start: calc(
+    var(--write-1-start) + 18 * var(--write-stagger) + var(--write-char-dur) + var(--write-gap)
+  );
   transform: translateY(-1cm);
 }
 
@@ -389,10 +382,8 @@ main {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: hero-wordmark-in var(--wm-dur) cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 0s;
+  opacity: 1;
+  transform: none;
 }
 
 .hero-wordmark::after {
@@ -403,43 +394,24 @@ main {
   margin-top: 0.65rem;
   border-radius: 999px;
   background: linear-gradient(90deg, #ea580c, #fb923c);
-  opacity: 0;
-  animation: hero-wordmark-rule 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 0.2s;
-}
-
-@keyframes hero-wordmark-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes hero-wordmark-rule {
-  to {
-    opacity: 1;
-  }
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-wordmark__title {
-    animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
 
   .hero-wordmark::after {
-    animation: none !important;
     opacity: 1 !important;
   }
 
-  .hero-tagline__track,
-  .hero h1,
-  .hero-lead__body,
-  .hero-lead__tagline {
+  .hero-write-char {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
   }
 }
 
@@ -590,10 +562,11 @@ main {
     transform: scale(1);
   }
 
-  .hero-tagline__track {
+  .hero-write-char {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
   }
 }
 
@@ -625,21 +598,163 @@ main {
   display: inline-flex;
   flex-wrap: nowrap;
   white-space: nowrap;
-  opacity: 0;
-  transform: translate3d(0, 6px, 0);
-  animation: hero-tagline-line-in var(--tag-dur) cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--tag-start);
 }
 
-@keyframes hero-tagline-line-in {
-  from {
+/* Hand-writing style reveal — sequential glyphs (GPU-friendly transforms only) */
+.hero-write-char {
+  display: inline-block;
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  animation: hero-write-reveal var(--write-char-dur) cubic-bezier(0.25, 0.82, 0.24, 1) both;
+}
+
+@keyframes hero-write-reveal {
+  0% {
     opacity: 0;
-    transform: translate3d(0, 6px, 0);
+    transform: translate3d(0.08em, 0.06em, 0) rotate(-3deg) scale(0.94);
+    filter: blur(3px);
   }
-  to {
+  55% {
+    filter: blur(0.6px);
+  }
+  100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    filter: blur(0);
   }
+}
+
+/* Line 1 — Pulmonology & Beyond (19 characters) */
+.hero-tagline__track .hero-write-char:nth-child(1) {
+  animation-delay: calc(var(--write-1-start) + 0 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(2) {
+  animation-delay: calc(var(--write-1-start) + 1 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(3) {
+  animation-delay: calc(var(--write-1-start) + 2 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(4) {
+  animation-delay: calc(var(--write-1-start) + 3 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(5) {
+  animation-delay: calc(var(--write-1-start) + 4 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(6) {
+  animation-delay: calc(var(--write-1-start) + 5 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(7) {
+  animation-delay: calc(var(--write-1-start) + 6 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(8) {
+  animation-delay: calc(var(--write-1-start) + 7 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(9) {
+  animation-delay: calc(var(--write-1-start) + 8 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(10) {
+  animation-delay: calc(var(--write-1-start) + 9 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(11) {
+  animation-delay: calc(var(--write-1-start) + 10 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(12) {
+  animation-delay: calc(var(--write-1-start) + 11 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(13) {
+  animation-delay: calc(var(--write-1-start) + 12 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(14) {
+  animation-delay: calc(var(--write-1-start) + 13 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(15) {
+  animation-delay: calc(var(--write-1-start) + 14 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(16) {
+  animation-delay: calc(var(--write-1-start) + 15 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(17) {
+  animation-delay: calc(var(--write-1-start) + 16 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(18) {
+  animation-delay: calc(var(--write-1-start) + 17 * var(--write-stagger));
+}
+.hero-tagline__track .hero-write-char:nth-child(19) {
+  animation-delay: calc(var(--write-1-start) + 18 * var(--write-stagger));
+}
+
+/* Line 2 — We call it the NAPA way! (24 characters), begins after line 1 completes */
+.hero-lead__tagline .hero-write-char:nth-child(1) {
+  animation-delay: calc(var(--write-2-start) + 0 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(2) {
+  animation-delay: calc(var(--write-2-start) + 1 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(3) {
+  animation-delay: calc(var(--write-2-start) + 2 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(4) {
+  animation-delay: calc(var(--write-2-start) + 3 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(5) {
+  animation-delay: calc(var(--write-2-start) + 4 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(6) {
+  animation-delay: calc(var(--write-2-start) + 5 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(7) {
+  animation-delay: calc(var(--write-2-start) + 6 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(8) {
+  animation-delay: calc(var(--write-2-start) + 7 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(9) {
+  animation-delay: calc(var(--write-2-start) + 8 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(10) {
+  animation-delay: calc(var(--write-2-start) + 9 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(11) {
+  animation-delay: calc(var(--write-2-start) + 10 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(12) {
+  animation-delay: calc(var(--write-2-start) + 11 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(13) {
+  animation-delay: calc(var(--write-2-start) + 12 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(14) {
+  animation-delay: calc(var(--write-2-start) + 13 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(15) {
+  animation-delay: calc(var(--write-2-start) + 14 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(16) {
+  animation-delay: calc(var(--write-2-start) + 15 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(17) {
+  animation-delay: calc(var(--write-2-start) + 16 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(18) {
+  animation-delay: calc(var(--write-2-start) + 17 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(19) {
+  animation-delay: calc(var(--write-2-start) + 18 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(20) {
+  animation-delay: calc(var(--write-2-start) + 19 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(21) {
+  animation-delay: calc(var(--write-2-start) + 20 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(22) {
+  animation-delay: calc(var(--write-2-start) + 21 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(23) {
+  animation-delay: calc(var(--write-2-start) + 22 * var(--write-stagger));
+}
+.hero-lead__tagline .hero-write-char:nth-child(24) {
+  animation-delay: calc(var(--write-2-start) + 23 * var(--write-stagger));
 }
 
 @media (max-width: 900px) {
@@ -665,28 +780,6 @@ main {
   }
 }
 
-@keyframes hero-prose-reveal {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 10px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes hero-lead-reveal {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 10px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 .hero h1 {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.45vw, 2.65rem);
@@ -696,9 +789,8 @@ main {
   max-width: 22ch;
   letter-spacing: -0.018em;
   color: var(--navy);
-  opacity: 0;
-  animation: hero-prose-reveal var(--h1-dur) cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--h1-start);
+  opacity: 1;
+  transform: none;
 }
 
 .hero-lead {
@@ -714,9 +806,7 @@ main {
 
 .hero-lead__body {
   display: block;
-  opacity: 0;
-  animation: hero-lead-reveal var(--lead-dur) cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--lead-start);
+  opacity: 1;
 }
 
 .hero-lead__tagline {
@@ -732,9 +822,6 @@ main {
   line-height: 1.4;
   color: var(--hero-subtitle-amber);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  opacity: 0;
-  animation: hero-lead-reveal var(--cta-dur) cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: var(--cta-start);
 }
 
 .btn {
