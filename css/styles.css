@@ -1864,46 +1864,46 @@ body:has(.programmes-gallery:target) {
     0 8px 28px rgba(15, 39, 68, 0.06);
 }
 
-/* Scroll-triggered entrance — soft ease, gentle motion (see js/main.js) */
+/* Scroll-triggered entrance — premium ease, layered motion (see js/main.js) */
 .team-grid--animated:not(.team-grid--in-view) .team-member {
   opacity: 0;
-  transform: translate3d(0, 10px, 0) scale(0.993);
+  transform: translate3d(0, 14px, 0) scale(0.988);
 }
 
 .team-grid--animated.team-grid--in-view .team-member {
-  animation: team-member-in 1.15s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation: team-member-in 1.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Cascade: ~55 ms between portraits, relaxed lead-in */
+/* Cascade: relaxed stagger so portraits read one beat apart */
 .team-grid--animated.team-grid--in-view .team-member:nth-child(1) {
-  animation-delay: 0.12s;
+  animation-delay: 0.1s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(2) {
-  animation-delay: 0.175s;
+  animation-delay: 0.165s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(3) {
   animation-delay: 0.23s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(4) {
-  animation-delay: 0.285s;
+  animation-delay: 0.295s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(5) {
-  animation-delay: 0.34s;
+  animation-delay: 0.36s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(6) {
-  animation-delay: 0.395s;
+  animation-delay: 0.425s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(7) {
-  animation-delay: 0.45s;
+  animation-delay: 0.49s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(8) {
-  animation-delay: 0.505s;
+  animation-delay: 0.555s;
 }
 
 @keyframes team-member-in {
   from {
     opacity: 0;
-    transform: translate3d(0, 10px, 0) scale(0.993);
+    transform: translate3d(0, 14px, 0) scale(0.988);
   }
   to {
     opacity: 1;
@@ -1926,43 +1926,64 @@ body:has(.programmes-gallery:target) {
 
 .team-grid--animated:not(.team-grid--in-view) .team-member .photo {
   clip-path: inset(0 0 100% 0);
+  transform: scale(1.032);
 }
 
 .team-grid--animated.team-grid--in-view .team-member .photo {
-  animation: team-photo-reveal 1.05s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation:
+    team-photo-reveal 1.38s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    team-photo-frame-settle 1.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .team-grid--animated.team-grid--in-view .team-member:nth-child(1) .photo {
-  animation-delay: 0.12s;
+  animation-delay: 0.1s, 0.1s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(2) .photo {
-  animation-delay: 0.175s;
+  animation-delay: 0.165s, 0.165s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(3) .photo {
-  animation-delay: 0.23s;
+  animation-delay: 0.23s, 0.23s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(4) .photo {
-  animation-delay: 0.285s;
+  animation-delay: 0.295s, 0.295s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(5) .photo {
-  animation-delay: 0.34s;
+  animation-delay: 0.36s, 0.36s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(6) .photo {
-  animation-delay: 0.395s;
+  animation-delay: 0.425s, 0.425s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(7) .photo {
-  animation-delay: 0.45s;
+  animation-delay: 0.49s, 0.49s;
 }
 .team-grid--animated.team-grid--in-view .team-member:nth-child(8) .photo {
-  animation-delay: 0.505s;
+  animation-delay: 0.555s, 0.555s;
 }
 
 @keyframes team-photo-reveal {
-  from {
+  0% {
     clip-path: inset(0 0 100% 0);
   }
-  to {
+  18% {
+    clip-path: inset(0 0 82% 0);
+  }
+  48% {
+    clip-path: inset(0 0 38% 0);
+  }
+  72% {
+    clip-path: inset(0 0 12% 0);
+  }
+  100% {
     clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes team-photo-frame-settle {
+  from {
+    transform: scale(1.032);
+  }
+  to {
+    transform: scale(1);
   }
 }
 
@@ -1984,53 +2005,52 @@ body:has(.programmes-gallery:target) {
 .section-team .team-member .photo img {
   display: block;
   transform-origin: center center;
-  transition: transform 0.65s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .team-grid--animated.team-grid--in-view .team-member .photo img {
-    animation: team-photo-drift 14s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite
-      alternate;
+    animation: team-photo-drift 20s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
   }
 
-  /* Drift begins after each card’s entrance settles */
+  /* Drift begins after each card’s entrance + settle */
   .team-grid--animated.team-grid--in-view .team-member:nth-child(1) .photo img {
-    animation-delay: 1.37s;
+    animation-delay: 1.62s;
   }
   .team-grid--animated.team-grid--in-view .team-member:nth-child(2) .photo img {
-    animation-delay: 1.425s;
+    animation-delay: 1.685s;
   }
   .team-grid--animated.team-grid--in-view .team-member:nth-child(3) .photo img {
-    animation-delay: 1.48s;
+    animation-delay: 1.75s;
   }
   .team-grid--animated.team-grid--in-view .team-member:nth-child(4) .photo img {
-    animation-delay: 1.535s;
+    animation-delay: 1.815s;
   }
   .team-grid--animated.team-grid--in-view .team-member:nth-child(5) .photo img {
-    animation-delay: 1.59s;
+    animation-delay: 1.88s;
   }
   .team-grid--animated.team-grid--in-view .team-member:nth-child(6) .photo img {
-    animation-delay: 1.645s;
+    animation-delay: 1.945s;
   }
   .team-grid--animated.team-grid--in-view .team-member:nth-child(7) .photo img {
-    animation-delay: 1.7s;
+    animation-delay: 2.01s;
   }
   .team-grid--animated.team-grid--in-view .team-member:nth-child(8) .photo img {
-    animation-delay: 1.755s;
+    animation-delay: 2.075s;
   }
 }
 
 @keyframes team-photo-drift {
   0% {
-    transform: scale(1) translate(0, 0);
+    transform: scale(1) translate3d(0, 0, 0);
   }
   100% {
-    transform: scale(1.035) translate(0, -1.25%);
+    transform: scale(1.018) translate3d(0, -0.55%, 0);
   }
 }
 
 .section-team .team-member:hover .photo img {
-  transform: scale(1.06) translate(0, -0.75%);
+  transform: scale(1.045) translate3d(0, -0.55%, 0);
   animation: none;
 }
 
