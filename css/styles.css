@@ -11,10 +11,6 @@
   --text-muted: #4a5568;
   --border: #e2e8f0;
   --surface: #ffffff;
-  /* Hero + social strip — single premium field colour */
-  --landing-pearl: #faf9f7;
-  /* Subtle plus-grid texture (navy @ ~4.5% — reads softly on pearl) */
-  --landing-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230f2744' fill-opacity='0.045'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   --cream: #f8fafc;
   --radius: 12px;
   --radius-lg: 20px;
@@ -25,20 +21,21 @@
   --font-display: "Source Serif 4", Georgia, serif;
   --font-wordmark: "Outfit", system-ui, sans-serif;
   /* Liquid glass — shared across sections */
-  --glass-blur: 22px;
-  --glass-blur-strong: 28px;
-  --glass-saturate: 168%;
+  --glass-blur: 24px;
+  --glass-blur-strong: 30px;
+  --glass-saturate: 172%;
   --glass-bg-light: linear-gradient(
     165deg,
-    rgba(255, 255, 255, 0.94) 0%,
-    rgba(241, 248, 255, 0.72) 48%,
-    rgba(255, 255, 255, 0.9) 100%
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(245, 250, 255, 0.78) 48%,
+    rgba(255, 255, 255, 0.94) 100%
   );
-  --glass-edge: 1px solid rgba(255, 255, 255, 0.92);
+  --glass-edge: 1px solid rgba(255, 255, 255, 0.96);
   --glass-edge-soft: 1px solid rgba(15, 39, 68, 0.08);
   --glass-shadow-elevated:
-    inset 0 1px 0 rgba(255, 255, 255, 0.96),
-    0 18px 46px rgba(15, 39, 68, 0.09);
+    inset 0 1px 0 rgba(255, 255, 255, 0.99),
+    0 22px 52px rgba(15, 39, 68, 0.08),
+    0 1px 0 rgba(15, 39, 68, 0.05);
   --glass-inner-panel: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.88) 0%,
@@ -117,7 +114,7 @@ main {
   overflow-x: hidden;
 }
 
-/* Header — liquid glass */
+/* Header — premium liquid glass (clean frost on white) */
 .site-header {
   position: sticky;
   top: 0;
@@ -127,17 +124,17 @@ main {
   max-width: 100%;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.78) 0%,
-    rgba(248, 250, 252, 0.52) 55%,
-    rgba(255, 255, 255, 0.42) 100%
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(255, 255, 255, 0.86) 48%,
+    rgba(255, 255, 255, 0.78) 100%
   );
-  backdrop-filter: blur(22px) saturate(165%);
-  -webkit-backdrop-filter: blur(22px) saturate(165%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(28px) saturate(175%);
+  -webkit-backdrop-filter: blur(28px) saturate(175%);
+  border-bottom: 1px solid rgba(15, 39, 68, 0.06);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.92),
-    0 4px 24px rgba(15, 39, 68, 0.06),
-    0 12px 40px rgba(15, 39, 68, 0.04);
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 8px 32px rgba(15, 39, 68, 0.06),
+    0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .site-header::after {
@@ -147,11 +144,11 @@ main {
   pointer-events: none;
   background: linear-gradient(
     105deg,
-    rgba(255, 255, 255, 0.35) 0%,
-    transparent 42%,
-    rgba(13, 148, 136, 0.06) 100%
+    rgba(255, 255, 255, 0.5) 0%,
+    transparent 45%,
+    rgba(13, 148, 136, 0.03) 100%
   );
-  opacity: 0.9;
+  opacity: 0.85;
   z-index: 0;
 }
 
@@ -302,39 +299,14 @@ main {
   }
 }
 
-/* Hero — pearl field with subtle woven grid (no tinted colour blobs) */
+/* Hero — pure white field (matches card surfaces); glass accents on visual + strip */
 .hero {
   position: relative;
   padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(4rem, 10vw, 6rem);
-  background: var(--landing-pearl);
+  background: var(--surface);
   color: var(--text);
   overflow-x: hidden;
   overflow-y: visible;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: var(--landing-pattern);
-  background-repeat: repeat;
-  opacity: 0.85;
-  mask-image: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 1) 22%,
-    rgba(0, 0, 0, 1) 78%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 1) 22%,
-    rgba(0, 0, 0, 1) 78%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
 }
 
 .hero .container {
@@ -473,6 +445,7 @@ main {
 }
 
 .lung-stage--photo {
+  position: relative;
   width: min(374px, 80vw);
   display: flex;
   align-items: center;
@@ -482,8 +455,35 @@ main {
   padding: 0.5rem 0 1.75rem;
 }
 
+.lung-stage--photo::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.25rem;
+  transform: translateX(-50%);
+  width: min(108%, 400px);
+  height: 92%;
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(241, 248, 255, 0.45) 42%,
+    rgba(255, 255, 255, 0.68) 100%
+  );
+  backdrop-filter: blur(26px) saturate(170%);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 22px 56px rgba(15, 39, 68, 0.09),
+    0 0 0 1px rgba(15, 39, 68, 0.045);
+}
+
 .lung-photo-pivot {
   position: relative;
+  z-index: 1;
   display: inline-block;
   line-height: 0;
   transform-style: preserve-3d;
@@ -561,6 +561,15 @@ main {
   .lung-photo-pivot {
     animation: none;
     transform: scale(1);
+  }
+
+  .lung-stage--photo::before {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      0 16px 40px rgba(15, 39, 68, 0.07);
   }
 
   .hero-write-char {
@@ -2271,24 +2280,18 @@ body:has(.programmes-gallery:target) {
   }
 }
 
-/* Social strip — matches hero pearl; icons mirror Contact → Social */
+/* Social strip — frosted glass band on white */
 .social-strip {
   position: relative;
   isolation: isolate;
   padding: 1.25rem 0;
-  background: var(--landing-pearl);
-  border-bottom: 1px solid rgba(15, 39, 68, 0.06);
-}
-
-.social-strip::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: var(--landing-pattern);
-  background-repeat: repeat;
-  opacity: 0.72;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  border-bottom: 1px solid rgba(15, 39, 68, 0.07);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 -2px 24px rgba(15, 39, 68, 0.03);
 }
 
 .social-inner {
@@ -3225,7 +3228,7 @@ body:has(.programmes-gallery:target) {
   }
 
   .social-strip {
-    background: var(--landing-pearl);
+    background: var(--surface);
   }
 
   .involved-field input,
