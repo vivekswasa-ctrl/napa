@@ -3,6 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f2744" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; form-action 'self'; img-src 'self' https://images.unsplash.com https: data:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self'; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'none'; upgrade-insecure-requests"
+    />
     <title>NAPA — New Age Pulmonologists Association</title>
     <meta
       name="description"
@@ -709,13 +719,7 @@
         </div>
       </section>
 
-      <section
-        class="visual-band"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1758691463203-cce9d415b2b5?auto=format&fit=crop&w=2400&q=85');
-        "
-        aria-label="Two clinicians in lab coats discussing care together"
-      >
+      <section class="visual-band visual-band--quote" aria-label="Two clinicians in lab coats discussing care together">
         <div class="container">
           <blockquote>
             “Trust between referring colleagues is built in conversation, not only on credentials.”
@@ -936,7 +940,7 @@
 
       <section class="join" id="join" aria-labelledby="join-title">
         <div class="container">
-          <p class="section-label" style="color: var(--teal-soft)">Membership</p>
+          <p class="section-label section-label--join-teal">Membership</p>
           <h2 id="join-title" class="section-title">Join NAPA</h2>
           <p class="section-intro">
             NAPA connects you to a relevant peer group committed to clinical quality, mutual support, and
@@ -1495,7 +1499,7 @@
           <div class="logo-row">
             <img src="assets/logo.png" alt="" width="890" height="814" />
             <div>
-              <strong style="color: #fff; display: block">New Age Pulmonologists Association</strong>
+              <strong class="site-footer__org-name">New Age Pulmonologists Association</strong>
               <span>© <span id="y"></span> NAPA. All rights reserved.</span>
             </div>
           </div>
@@ -1521,8 +1525,5 @@
       </style>
     </noscript>
     <script src="js/main.js"></script>
-    <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>
