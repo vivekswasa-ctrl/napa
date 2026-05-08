@@ -870,8 +870,9 @@ main {
 
   .hero-tagline {
     padding-inline: 0.25rem;
-    font-size: clamp(1.28rem, 2.65vw, 1.78rem);
-    letter-spacing: 0.028em;
+    font-size: clamp(1.85rem, 5vw, 2.55rem);
+    letter-spacing: 0.03em;
+    font-weight: 700;
   }
 }
 
@@ -887,7 +888,8 @@ main {
   }
 
   .hero-tagline {
-    font-size: clamp(1.12rem, 4.2vw, 1.55rem);
+    font-size: clamp(1.65rem, 5.5vw, 2.35rem);
+    font-weight: 700;
   }
 }
 
@@ -3489,14 +3491,14 @@ main#top:focus-visible {
   }
 
   .hero-tagline {
-    font-size: clamp(0.95rem, 3.5vw, 1.38rem);
-    letter-spacing: 0.012em;
-    padding-bottom: 0.32em;
+    font-size: clamp(1.55rem, 5.8vw, 2.25rem);
+    letter-spacing: 0.028em;
+    padding-bottom: 0.36em;
+    font-weight: 700;
   }
 
   .hero-tagline__track {
-    transform: scale(0.88);
-    transform-origin: center top;
+    transform: none;
   }
 
   section {
@@ -3534,12 +3536,12 @@ main#top:focus-visible {
   }
 
   .hero-tagline {
-    font-size: clamp(0.88rem, 3.35vw, 1.28rem);
-    letter-spacing: 0.01em;
+    font-size: clamp(1.45rem, 5.5vw, 2.05rem);
+    letter-spacing: 0.026em;
+    font-weight: 700;
   }
 
   .hero-tagline__track {
-    transform: scale(0.82);
-    transform-origin: center top;
+    transform: none;
   }
 }
