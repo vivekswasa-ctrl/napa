@@ -299,7 +299,7 @@ main {
   }
 }
 
-/* Hero — pure white field (matches card surfaces); glass accents on visual + strip */
+/* Hero — pure white field (matches card surfaces); strip uses subtle glass */
 .hero {
   position: relative;
   padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(4rem, 10vw, 6rem);
@@ -455,30 +455,9 @@ main {
   padding: 0.5rem 0 1.75rem;
 }
 
+/* Glass card behind lungs removed — lungs sit on the hero white field */
 .lung-stage--photo::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -0.25rem;
-  transform: translateX(-50%);
-  width: min(108%, 400px);
-  height: 92%;
-  border-radius: var(--radius-lg);
-  pointer-events: none;
-  z-index: 0;
-  background: linear-gradient(
-    155deg,
-    rgba(255, 255, 255, 0.72) 0%,
-    rgba(241, 248, 255, 0.45) 42%,
-    rgba(255, 255, 255, 0.68) 100%
-  );
-  backdrop-filter: blur(26px) saturate(170%);
-  -webkit-backdrop-filter: blur(26px) saturate(170%);
-  border: 1px solid rgba(255, 255, 255, 0.92);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 1),
-    0 22px 56px rgba(15, 39, 68, 0.09),
-    0 0 0 1px rgba(15, 39, 68, 0.045);
+  content: none;
 }
 
 .lung-photo-pivot {
@@ -561,15 +540,6 @@ main {
   .lung-photo-pivot {
     animation: none;
     transform: scale(1);
-  }
-
-  .lung-stage--photo::before {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 1),
-      0 16px 40px rgba(15, 39, 68, 0.07);
   }
 
   .hero-write-char {
