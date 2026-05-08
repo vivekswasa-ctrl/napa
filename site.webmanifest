@@ -1,0 +1,17 @@
+{
+  "name": "NAPA — New Age Pulmonologists Association",
+  "short_name": "NAPA",
+  "description": "New Age Pulmonologists Association (NAPA): a national society of 150+ pulmonologists focused on peer dialogue, sport and wellness, mentorship, and programmes beyond standard CME.",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#0f2744",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ]
+}
