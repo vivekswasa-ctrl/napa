@@ -1537,17 +1537,13 @@ section {
 }
 
 .programmes-tablist {
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.45rem;
   padding: 0.55rem;
   margin-bottom: 1rem;
   border-radius: var(--radius-lg);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x proximity;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+  overflow: visible;
   background: linear-gradient(
     142deg,
     rgba(15, 39, 68, 0.96) 0%,
@@ -1561,29 +1557,21 @@ section {
     0 12px 36px rgba(15, 39, 68, 0.22);
 }
 
-.programmes-tablist::-webkit-scrollbar {
-  height: 6px;
-}
-
-.programmes-tablist::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.28);
-  border-radius: 999px;
-}
-
 .programmes-tab {
-  flex: 1 0 auto;
-  scroll-snap-align: start;
+  flex: unset;
   min-height: 44px;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.55rem 1rem;
+  gap: 0.35rem;
+  padding: 0.55rem 0.35rem;
   font-weight: 600;
-  font-size: clamp(0.8rem, 1.9vw, 0.92rem);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  font-size: clamp(0.68rem, 2.4vw, 0.85rem);
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: rgba(255, 255, 255, 0.82);
-  border-radius: 999px;
+  border-radius: var(--radius);
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.06);
   cursor: pointer;
@@ -1594,7 +1582,69 @@ section {
     border-color 0.2s ease,
     box-shadow 0.2s ease,
     transform 0.15s ease;
-  white-space: nowrap;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.programmes-tab__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.programmes-tab__icon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.programmes-tab__label {
+  display: block;
+  max-width: 100%;
+}
+
+@media (max-width: 719px) {
+  .programmes-tablist {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0.6rem;
+  }
+
+  .programmes-tab {
+    padding: 0.65rem 0.4rem;
+    min-height: 72px;
+  }
+
+  .programmes-tab__icon svg {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+}
+
+@media (min-width: 720px) {
+  .programmes-tablist {
+    gap: 0.5rem;
+    padding: 0.6rem;
+  }
+
+  .programmes-tab {
+    padding: 0.65rem 0.5rem;
+    font-size: clamp(0.78rem, 1.2vw, 0.92rem);
+    border-radius: 999px;
+    flex-direction: row;
+    gap: 0.45rem;
+    min-height: 48px;
+  }
+
+  .programmes-tab__icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .programmes-tab__label {
+    text-align: left;
+  }
 }
 
 .programmes-tab:hover {
@@ -1625,8 +1675,8 @@ section {
   font-size: 0.875rem;
   font-weight: 800;
   font-style: italic;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--involved-orange);
 }
 
@@ -1728,28 +1778,6 @@ section {
 .programmes-activity-link:focus-visible {
   outline: 2px solid rgba(13, 148, 136, 0.65);
   outline-offset: 3px;
-}
-
-@media (min-width: 720px) {
-  .programmes-tablist {
-    flex-wrap: wrap;
-    overflow: visible;
-    justify-content: stretch;
-    gap: 0.5rem;
-    padding: 0.6rem;
-  }
-
-  .programmes-tab {
-    flex: 1 1 0;
-    min-width: 0;
-    white-space: normal;
-    text-align: center;
-    line-height: 1.25;
-    text-transform: none;
-    font-size: 0.95rem;
-    letter-spacing: 0.02em;
-    padding: 0.75rem 1rem;
-  }
 }
 
 .programmes-outro {
