@@ -666,10 +666,10 @@ main {
   margin: clamp(0.75rem, 2vw, 1.25rem) 0 0;
   max-width: 100%;
   font-family: "Great Vibes", cursive;
-  font-size: clamp(1.48rem, 3.15vw, 2.15rem);
-  font-weight: 400;
-  line-height: 1.55;
-  letter-spacing: 0.02em;
+  font-size: clamp(2.05rem, 5.35vw, 3.15rem);
+  font-weight: 700;
+  line-height: 1.42;
+  letter-spacing: 0.03em;
   text-align: center;
   color: var(--hero-subtitle-amber);
   text-shadow: none;
@@ -677,6 +677,13 @@ main {
   white-space: nowrap;
   overflow: visible;
   padding-bottom: 0.28em;
+  --hero-tagline-gradient: linear-gradient(
+    90deg,
+    #0284c7 0%,
+    #6366f1 34%,
+    #ec4899 66%,
+    #f97316 100%
+  );
 }
 
 .hero-copy .hero-tagline {
@@ -697,10 +704,15 @@ main {
 /* Hand-writing reveal — left-to-right stroke per glyph (P … d in order) */
 .hero-write-char {
   display: inline-block;
-  opacity: 1;
+  opacity: 0;
   transform-origin: left center;
   backface-visibility: hidden;
   overflow: visible;
+  color: transparent;
+  background: var(--hero-tagline-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   animation: hero-write-reveal var(--write-char-dur) cubic-bezier(0.33, 0.72, 0.22, 1) both;
 }
 
@@ -708,10 +720,12 @@ main {
   0% {
     /* Extra vertical slack so script descenders (g, y) aren’t clipped during reveal */
     clip-path: inset(-0.35em 100% -0.35em 0);
+    opacity: 0;
     transform: translate3d(0, 0.06em, 0) rotate(-3deg);
   }
   100% {
     clip-path: inset(-0.35em 0 -0.35em 0);
+    opacity: 1;
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
 }
@@ -870,8 +884,9 @@ main {
 
   .hero-tagline {
     padding-inline: 0.25rem;
-    font-size: clamp(1.28rem, 2.65vw, 1.78rem);
-    letter-spacing: 0.028em;
+    font-size: clamp(1.85rem, 5vw, 2.55rem);
+    letter-spacing: 0.03em;
+    font-weight: 700;
   }
 }
 
@@ -887,7 +902,8 @@ main {
   }
 
   .hero-tagline {
-    font-size: clamp(1.12rem, 4.2vw, 1.55rem);
+    font-size: clamp(1.65rem, 5.5vw, 2.35rem);
+    font-weight: 700;
   }
 }
 
@@ -3489,14 +3505,14 @@ main#top:focus-visible {
   }
 
   .hero-tagline {
-    font-size: clamp(0.95rem, 3.5vw, 1.38rem);
-    letter-spacing: 0.012em;
-    padding-bottom: 0.32em;
+    font-size: clamp(1.55rem, 5.8vw, 2.25rem);
+    letter-spacing: 0.028em;
+    padding-bottom: 0.36em;
+    font-weight: 700;
   }
 
   .hero-tagline__track {
-    transform: scale(0.88);
-    transform-origin: center top;
+    transform: none;
   }
 
   section {
@@ -3534,12 +3550,12 @@ main#top:focus-visible {
   }
 
   .hero-tagline {
-    font-size: clamp(0.88rem, 3.35vw, 1.28rem);
-    letter-spacing: 0.01em;
+    font-size: clamp(1.45rem, 5.5vw, 2.05rem);
+    letter-spacing: 0.026em;
+    font-weight: 700;
   }
 
   .hero-tagline__track {
-    transform: scale(0.82);
-    transform-origin: center top;
+    transform: none;
   }
 }
