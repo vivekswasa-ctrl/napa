@@ -704,16 +704,20 @@ main {
 /* Hand-writing reveal — left-to-right stroke per glyph (P … d in order) */
 .hero-write-char {
   display: inline-block;
-  opacity: 0;
+  opacity: 1;
   transform-origin: left center;
   backface-visibility: hidden;
   overflow: visible;
+  animation: hero-write-reveal var(--write-char-dur) cubic-bezier(0.33, 0.72, 0.22, 1) both;
+}
+
+.hero-tagline__track .hero-write-char {
+  opacity: 0;
   color: transparent;
   background: var(--hero-tagline-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: hero-write-reveal var(--write-char-dur) cubic-bezier(0.33, 0.72, 0.22, 1) both;
 }
 
 @keyframes hero-write-reveal {
